@@ -1,7 +1,7 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from "next";
 import { absoluteUrl } from "~/lib/utils";
-import { ListIconItem } from "./list";
+import { ListIconItem } from "~/services/simple-icons";
 
 type Data = null | ReadableStream<Uint8Array> | string;
 

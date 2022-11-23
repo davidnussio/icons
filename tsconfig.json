@@ -6,6 +6,7 @@
       "~/ui/*": ["ui/*"],
       "~/components/*": ["components/*"],
       "~/lib/*": ["lib/*"],
+      "~/services/*": ["services/*"],
       "~/styles/*": ["styles/*"]
     },
     "target": "es5",

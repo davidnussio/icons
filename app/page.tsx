@@ -1,21 +1,14 @@
-import { ListIconItem } from "pages/api/icons/list";
 import { IconForms } from "~/components/IconForm";
-import { absoluteUrl } from "~/lib/utils";
+import { fetchIconList, ListIconItem } from "~/services/simple-icons";
 import { H1, H2 } from "~/ui/typography";
 
-export type ListIconResponse = ListIconItem[];
-
-async function useBrands(): Promise<string[]> {
-  const response = await fetch(absoluteUrl("/api/icons/list"));
-  if (response.ok) {
-    const data: ListIconResponse = await response.json();
-    return data.map((icon) => icon.title);
-  }
-  return [];
+async function fetchBrands(): Promise<string[]> {
+  const data: ListIconItem[] = await fetchIconList();
+  return data.map((icon) => icon.title);
 }
 
 export default async function Home() {
-  const brands = await useBrands();
+  const brands = await fetchBrands();
 
   return (
     <div className="max-w-xl m-auto pt-12">
@@ -57,3 +50,5 @@ export default async function Home() {
     </div>
   );
 }
+
+export const dynamic = "force-dynamic";
