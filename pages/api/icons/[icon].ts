@@ -1,6 +1,7 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from "next";
 import { absoluteUrl } from "~/lib/utils";
+import { ListIconItem } from "./list";
 
 type Data = null | ReadableStream<Uint8Array> | string;
 
@@ -22,10 +23,12 @@ async function normalizeColor(color: string, iconName: string) {
   if (color === "brand") {
     const response = await fetch(absoluteUrl("/api/icons/list"));
     if (response.ok) {
-      const data = await response.json();
-      const found = data.icons.find(
+      const data: ListIconItem[] = await response.json();
+
+      const found = data.find(
         (icon: any) => icon.title.toLowerCase() === iconName
       );
+
       return `#${found ? found.hex : "000000"}`;
     }
   }
@@ -37,13 +40,12 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<Data>
 ) {
-  console.log(req.query);
   const { icon, color = "000000" } = req.query as {
     icon: string;
     color?: string;
   };
 
-  const iconName = icon.replace(".svg", "");
+  const iconName = icon.replace(".svg", "").toLowerCase();
 
   const response = await fetch(
     `https://simpleicons.org/icons/${icon.toLowerCase()}`
