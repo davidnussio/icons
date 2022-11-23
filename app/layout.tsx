@@ -3,6 +3,7 @@ import { Inter as FontSans } from "@next/font/google";
 import "~/styles/globals.css";
 
 import { cn } from "~/lib/utils";
+import { TailwindIndicator } from "~/components/tailwind-indicator";
 // import { Toaster } from "@/ui/toast";
 // import { Help } from "@/components/help";
 // import { Analytics } from "@/components/analytics";
@@ -25,17 +26,20 @@ export default function RootLayout({ children }: RootLayoutProps) {
         "bg-white font-sans text-slate-900 antialiased",
         fontSans.variable
       )}>
-      <head />
-      <body className="min-h-screen">
+      <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+      </head>
+      <body className="min-h-screen p-2">
         {children}
         {/* <Analytics />
         <Help />
         <Toaster position="bottom-right" />
-        <TailwindIndicator /> */}
+      */}
         <footer className="absolute bottom-1 right-2 text-xs">
           {process.env.NEXT_PUBLIC_VERCEL_GIT_COMMIT_SHA?.substring(0, 8) ||
             "local-dev"}
         </footer>
+        <TailwindIndicator />
       </body>
     </html>
   );

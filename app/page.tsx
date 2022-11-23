@@ -1,4 +1,4 @@
-import { IconForms } from "~/components/IconForm";
+import { IconForms } from "~/components/icon-form";
 import { fetchIconList, ListIconItem } from "~/services/simple-icons";
 import { H1, H2 } from "~/ui/typography";
 

@@ -1,10 +1,18 @@
 import { cn } from "~/lib/utils";
 
-type InputProps = JSX.IntrinsicElements["input"] & { label?: React.ReactNode };
+type InputProps = JSX.IntrinsicElements["input"] & {
+  label?: React.ReactNode;
+  fullWidth?: boolean;
+};
 
-export default function Input({ label, className, ...props }: InputProps) {
+export default function Input({
+  fullWidth = false,
+  label,
+  className,
+  ...props
+}: InputProps) {
   return (
-    <div>
+    <div className={cn(fullWidth && "w-full")}>
       <label
         htmlFor={props.id}
         className="block text-sm font-medium text-gray-700">
