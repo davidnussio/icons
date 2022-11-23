@@ -138,6 +138,9 @@ function ColorInput({ colorType }: { colorType: ColorTypes }) {
           label="Alpha"
           className="w-28"
           type="number"
+          step="0.01"
+          min="0"
+          max="1"
           onChange={handleAlphaHandler}
           defaultValue={color.split(",")[3]}
         />
