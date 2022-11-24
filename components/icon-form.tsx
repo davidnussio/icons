@@ -7,8 +7,23 @@ import Input from "~/ui/input";
 import Select from "~/ui/select";
 
 const COLORS_TYPES = ["brand", "hex", "rgb", "rgba"] as const;
+const FILE_TYPES = [".svg", ".png"] as const;
+const IMAGE_WIDTHS = [
+  "24",
+  "32",
+  "48",
+  "64",
+  "96",
+  "128",
+  "256",
+  "500",
+  "1024",
+  "2064",
+] as const;
 
 type ColorTypes = typeof COLORS_TYPES[number];
+type FileTypes = typeof FILE_TYPES[number];
+type ImageWidthTypes = typeof IMAGE_WIDTHS[number];
 
 type IconFormProps = {
   brands: string[];
@@ -80,7 +95,7 @@ function ColorInput({ colorType }: { colorType: ColorTypes }) {
   };
 
   return (
-    <div className={cn("flex justify-between flex-grow")}>
+    <div className={cn("flex justify-between flex-grow", "w-")}>
       <input id="color" name="color" type="hidden" value={color} />
       {colorType === "hex" && (
         <Input
@@ -142,13 +157,18 @@ function ColorInput({ colorType }: { colorType: ColorTypes }) {
 
 export function IconForms({ brands }: IconFormProps) {
   const [colorType, setColorType] = useState<ColorTypes>(COLORS_TYPES[0]);
+  const [fileType, setFileType] = useState<FileTypes>(FILE_TYPES[0]);
+  const [imageWidth, setImageWidth] = useState<ImageWidthTypes>(
+    IMAGE_WIDTHS[6]
+  );
+
   const submitFormHandler = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
     const data = Object.fromEntries(formData);
 
     window.open(
-      `/api/icons/${data.icon}.svg?color=${normalizeColor(
+      `/api/icons/${data.icon}${fileType}?color=${normalizeColor(
         data.colorType,
         data.color
       )}`,
@@ -165,6 +185,30 @@ export function IconForms({ brands }: IconFormProps) {
             ))}
           </Select>
         </div>
+        <div>
+          <Select
+            id="fileType"
+            name="fileType"
+            onChange={(e) => setFileType(e.target.value as FileTypes)}>
+            {FILE_TYPES.map((fileType) => (
+              <option key={fileType}>{fileType}</option>
+            ))}
+          </Select>
+        </div>
+        {fileType === ".png" && (
+          <div>
+            <Select
+              id="width"
+              name="width"
+              onChange={(e) =>
+                setImageWidth(e.target.value as ImageWidthTypes)
+              }>
+              {IMAGE_WIDTHS.map((width) => (
+                <option key={width}>{width}</option>
+              ))}
+            </Select>
+          </div>
+        )}
         <div>
           <Select
             id="colorType"
