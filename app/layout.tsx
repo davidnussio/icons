@@ -37,7 +37,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
         <Help />
         <Toaster position="bottom-right" />
       */}
-        <footer className="absolute bottom-1 right-2 text-xs">
+        <footer className="fixed bottom-1 right-2 text-xs">
           {process.env.NEXT_PUBLIC_VERCEL_GIT_COMMIT_SHA?.substring(0, 8) ||
             "local-dev"}
         </footer>

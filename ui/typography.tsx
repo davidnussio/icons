@@ -4,8 +4,8 @@ import { cva, type VariantProps } from "class-variance-authority";
 const typography = cva("typograpy", {
   variants: {
     variant: {
-      h1: ["text-5xl font-semibold pb-16"],
-      h2: ["text-3xl font-medium py-4"],
+      h1: ["text-5xl font-semibold mb-10"],
+      h2: ["text-3xl font-medium mb-4"],
     },
   },
 });

@@ -6,15 +6,7 @@ import Button from "~/ui/button";
 import Input from "~/ui/input";
 import Select from "~/ui/select";
 
-const COLORS_TYPES = [
-  "brand",
-  "hex",
-  "rgb",
-  "rgba",
-  "currentColor",
-  "none",
-  "transparent",
-] as const;
+const COLORS_TYPES = ["brand", "hex", "rgb", "rgba"] as const;
 
 type ColorTypes = typeof COLORS_TYPES[number];
 
