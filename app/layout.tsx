@@ -4,6 +4,7 @@ import "~/styles/globals.css";
 
 import { cn } from "~/lib/utils";
 import { TailwindIndicator } from "~/components/tailwind-indicator";
+import { Analytics } from "~/components/analytics";
 // import { Toaster } from "@/ui/toast";
 // import { Help } from "@/components/help";
 // import { Analytics } from "@/components/analytics";
@@ -31,7 +32,8 @@ export default function RootLayout({ children }: RootLayoutProps) {
       </head>
       <body className="min-h-screen p-2">
         {children}
-        {/* <Analytics />
+        <Analytics />
+        {/* 
         <Help />
         <Toaster position="bottom-right" />
       */}
