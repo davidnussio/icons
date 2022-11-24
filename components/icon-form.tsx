@@ -154,7 +154,6 @@ export function IconForms({ brands }: IconFormProps) {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
     const data = Object.fromEntries(formData);
-    console.log(data);
 
     window.open(
       `/api/icons/${data.icon}.svg?color=${normalizeColor(
@@ -166,7 +165,7 @@ export function IconForms({ brands }: IconFormProps) {
   };
   return (
     <form onSubmit={submitFormHandler}>
-      <div className="flex flex-col md:flex-row md:space-x-2 md:space-y-2">
+      <div className="flex flex-col md:flex-row md:space-x-2 md:space-y-0 space-y-2">
         <div className="flex-grow">
           <Select id="icon" name="icon">
             {brands.map((brand) => (

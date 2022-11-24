@@ -42,16 +42,15 @@ export default async function handler(
     color?: string;
   };
 
-  const iconName = icon.replace(".svg", "").toLowerCase();
+  const iconPath = icon.toLowerCase().replace(/[^a-z0-9.]/g, "");
+  const iconName = icon.toLowerCase().replace(".svg", "");
 
-  const response = await fetch(
-    `https://simpleicons.org/icons/${icon.toLowerCase()}`
-  );
+  const response = await fetch(`https://simpleicons.org/icons/${iconPath}`);
 
   const fill = await normalizeColor(color, iconName);
 
   console.log(
-    `Fetched icon from 'https://simpleicons.org/icons/${icon.toLowerCase()}' with color '${color}' > '${fill}'`
+    `Fetched icon from 'https://simpleicons.org/icons/${iconPath}' with color '${color}' > '${fill}'`
   );
 
   const svgIcon =
