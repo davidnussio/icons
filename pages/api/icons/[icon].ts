@@ -1,7 +1,8 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from "next";
-import { basename, extname, parse } from "path";
+import { parse } from "path";
 import sharp from "sharp";
+import Color from "color";
 import { fetchIconList, ListIconItem } from "~/services/simple-icons";
 
 type Data = string | Buffer;
@@ -46,10 +47,12 @@ export default async function handler(
   const {
     icon,
     color = "000000",
+    bgColor = "transparent",
     width = "150",
   } = req.query as {
     icon: string;
     color?: string;
+    bgColor?: string;
     width?: string;
   };
 
@@ -68,6 +71,7 @@ export default async function handler(
   const fill = await normalizeColor(color, iconBasename);
 
   console.log(
+    `bg color: ${bgColor} -> ${JSON.stringify(Color(bgColor).object())}`,
     `Fetched icon from 'https://simpleicons.org/icons/${iconPath}' with color '${color}' > '${fill}'`
   );
 
@@ -89,6 +93,7 @@ export default async function handler(
       const data = await sharp(Buffer.from(svgIconWithColor))
         .resize({
           width: resizeWidth,
+          background: Color(bgColor).object(),
         })
         .png({ progressive: true })
         .toBuffer();
