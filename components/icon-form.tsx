@@ -195,20 +195,18 @@ export function IconForms({ brands }: IconFormProps) {
             ))}
           </Select>
         </div>
-        {fileType === ".png" && (
-          <div>
-            <Select
-              id="width"
-              name="width"
-              onChange={(e) =>
-                setImageWidth(e.target.value as ImageWidthTypes)
-              }>
-              {IMAGE_WIDTHS.map((width) => (
-                <option key={width}>{width}</option>
-              ))}
-            </Select>
-          </div>
-        )}
+        <div>
+          <Select
+            id="width"
+            name="width"
+            disabled={fileType === ".svg"}
+            defaultValue={imageWidth}
+            onChange={(e) => setImageWidth(e.target.value as ImageWidthTypes)}>
+            {IMAGE_WIDTHS.map((width) => (
+              <option key={width}>{width}</option>
+            ))}
+          </Select>
+        </div>
         <div>
           <Select
             id="colorType"
