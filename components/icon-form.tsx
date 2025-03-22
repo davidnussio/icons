@@ -189,7 +189,9 @@ export function IconForms({ brands }: IconFormProps) {
           <Select
             id="fileType"
             name="fileType"
-            onChange={(e) => setFileType(e.target.value as FileTypes)}>
+            onChange={(e: Seleceve) =>
+              setFileType(e.target.value as FileTypes)
+            }>
             {FILE_TYPES.map((fileType) => (
               <option key={fileType}>{fileType}</option>
             ))}
