@@ -2,7 +2,6 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { parse } from "path";
 import sharp from "sharp";
-import Color from "color";
 import { fetchIconList, ListIconItem } from "~/services/simple-icons";
 
 type Data = string | Buffer;

@@ -1,6 +1,6 @@
 "use client";
 
-import { SetStateAction, useState } from "react";
+import { useState } from "react";
 import { cn } from "~/lib/utils";
 import Button from "~/ui/button";
 import Input from "~/ui/input";
@@ -21,9 +21,9 @@ const IMAGE_WIDTHS = [
   "2064",
 ] as const;
 
-type ColorTypes = typeof COLORS_TYPES[number];
-type FileTypes = typeof FILE_TYPES[number];
-type ImageWidthTypes = typeof IMAGE_WIDTHS[number];
+type ColorTypes = (typeof COLORS_TYPES)[number];
+type FileTypes = (typeof FILE_TYPES)[number];
+type ImageWidthTypes = (typeof IMAGE_WIDTHS)[number];
 
 type IconFormProps = {
   brands: string[];
@@ -95,7 +95,7 @@ function ColorInput({ colorType }: { colorType: ColorTypes }) {
   };
 
   return (
-    <div className={cn("flex justify-between flex-grow", "w-")}>
+    <div className={cn("flex justify-between grow", "w-")}>
       <input id="color" name="color" type="hidden" value={color} />
       {colorType === "hex" && (
         <Input
@@ -178,7 +178,7 @@ export function IconForms({ brands }: IconFormProps) {
   return (
     <form onSubmit={submitFormHandler}>
       <div className="flex flex-col md:flex-row md:space-x-2 md:space-y-0 space-y-2">
-        <div className="flex-grow">
+        <div className="grow">
           <Select id="icon" name="icon">
             {brands.map((brand) => (
               <option key={brand}>{brand}</option>

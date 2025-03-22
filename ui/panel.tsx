@@ -6,7 +6,7 @@ export default function Panel({
 }: React.HTMLAttributes<HTMLDivElement>) {
   return (
     <div
-      className={cn("my-4 py-6 px-4 border shadow rounded shadow", className)}
+      className={cn("my-4 py-6 px-4 border shadow-sm rounded-sm shadow-sm", className)}
       {...props}
     />
   );
