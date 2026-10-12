@@ -1,6 +1,6 @@
 import { cn } from "~/lib/utils";
 
-type ButtonProps = JSX.IntrinsicElements["button"] & {};
+type ButtonProps = React.ComponentProps<"button"> & {};
 
 export default function Button({ className, ...props }: ButtonProps) {
   return (
