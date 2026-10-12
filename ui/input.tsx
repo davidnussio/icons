@@ -1,6 +1,6 @@
 import { cn } from "~/lib/utils";
 
-type InputProps = JSX.IntrinsicElements["input"] & {
+type InputProps = React.ComponentProps<"input"> & {
   label?: React.ReactNode;
   fullWidth?: boolean;
 };

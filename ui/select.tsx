@@ -1,6 +1,6 @@
 import { cn } from "~/lib/utils";
 
-type SelectProps = JSX.IntrinsicElements["select"] & {
+type SelectProps = React.ComponentProps<"select"> & {
   label?: React.ReactNode;
 };
 export default function Select({ label, className, ...props }: SelectProps) {
